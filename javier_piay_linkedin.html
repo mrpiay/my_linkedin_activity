@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javier Piay — LinkedIn Activity</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f9f9f8; color: #1a1a1a; padding: 2rem; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+.subtitle { font-size: 14px; color: #888; margin-bottom: 1.5rem; }
+.tabs { display: flex; border-bottom: 1.5px solid #e0e0e0; margin-bottom: 1.25rem; }
+.tab { font-size: 14px; padding: 8px 20px; cursor: pointer; border: none; background: transparent; color: #888; border-bottom: 2px solid transparent; margin-bottom: -1.5px; }
+.tab:hover { color: #1a1a1a; }
+.tab.active { color: #1a1a1a; font-weight: 500; border-bottom-color: #1a1a1a; }
+.filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+.fb { font-size: 12px; padding: 4px 14px; border-radius: 99px; border: 1px solid #ddd; background: transparent; cursor: pointer; color: #555; }
+.fb:hover { border-color: #aaa; }
+.fb.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.count { font-size: 12px; color: #aaa; margin-bottom: 10px; }
+.row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #eee; }
+.row:last-child { border-bottom: none; }
+.num { font-size: 12px; color: #bbb; min-width: 24px; text-align: right; padding-top: 2px; flex-shrink: 0; }
+.title-link { font-size: 14px; color: #1a1a1a; flex: 1; line-height: 1.5; text-decoration: none; }
+.title-link:hover { color: #0077b5; text-decoration: underline; }
+.no-url { font-size: 14px; color: #888; flex: 1; line-height: 1.5; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+.tag-ai     { background: #e8f0fe; color: #1a56d6; }
+.tag-edu    { background: #e6f4ea; color: #1e6e3a; }
+.tag-career { background: #fef9e0; color: #a06000; }
+.tag-tech   { background: #e1f5ee; color: #0f6e56; }
+.tag-phil   { background: #eeedfe; color: #3c3489; }
+.tag-es     { background: #f3f3f3; color: #555; }
+.panel { display: none; }
+.panel.active { display: block; }
+footer { margin-top: 2rem; font-size: 12px; color: #bbb; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Javier Piay Pombo</h1>
+  <p class="subtitle">LinkedIn Activity — Articles &amp; Posts &nbsp;·&nbsp; Last updated April 2026</p>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'articles')">Articles (51)</button>
+    <button class="tab" onclick="switchTab(this,'posts')">Posts (51)</button>
+  </div>
+
+  <div class="panel active" id="panel-articles">
+    <div class="filter-row" id="art-filters">
+      <button class="fb active" onclick="filterArt(this,'all')">All</button>
+      <button class="fb" onclick="filterArt(this,'ai')">AI</button>
+      <button class="fb" onclick="filterArt(this,'edu')">Education</button>
+      <button class="fb" onclick="filterArt(this,'tech')">Tech</button>
+      <button class="fb" onclick="filterArt(this,'career')">Career</button>
+      <button class="fb" onclick="filterArt(this,'phil')">Philosophy</button>
+      <button class="fb" onclick="filterArt(this,'es')">Español</button>
+    </div>
+    <div class="count" id="art-count"></div>
+    <div id="art-list"></div>
+  </div>
+
+  <div class="panel" id="panel-posts">
+    <p style="font-size:13px;color:#aaa;margin-bottom:1rem;">Non-comprehensive — older posts not included.</p>
+    <div class="count" id="post-count"></div>
+    <div id="post-list"></div>
+  </div>
+
+  <footer>linkedin.com/in/javierpiay</footer>
+</div>
+<script>
+const articles = [
+  {title:"La Chispa Humana / The Human Spark",tags:["ai","career"],url:"https://www.linkedin.com/pulse/la-chispa-humana-human-spark-javier-piay-wdvde"},
+  {title:"Git The Flag: master git or die trying",tags:["tech"],url:"https://www.linkedin.com/pulse/git-flag-master-die-trying-javier-piay-flr4e"},
+  {title:"Knights, Knaves & Spies: From Logic Solver to Machine Learning",tags:["ai","tech"],url:"https://www.linkedin.com/pulse/knights-knaves-spies-from-logic-solver-machine-learning-javier-piay-ot2ge"},
+  {title:"Design & implementation of a multi-agent AI tutoring system for adaptive e-Learning",tags:["ai","edu"],url:"https://www.linkedin.com/pulse/design-implementation-multi-agent-ai-tutoring-system-e-learning-piay-iig4e"},
+  {title:"The Simplest AI Chatbot vs The Simplest AI Agent",tags:["ai","tech"],url:"https://www.linkedin.com/pulse/simplest-ai-chatbot-vs-agent-javier-piay-tgj8e"},
+  {title:"EduSSI: Self-Sovereign Identity in Education",tags:["edu","tech"],url:"https://www.linkedin.com/pulse/edussi-self-sovereign-identity-education-javier-piay-4acne"},
+  {title:"Inteligencia Artificial y Educación – Marco Conceptual",tags:["ai","edu","es"],url:"https://www.linkedin.com/pulse/inteligencia-artificial-y-educaci%C3%B3n-marco-conceptual-javier-piay-nvsse"},
+  {title:"Why I Built a Custom Logic Gates Trainer",tags:["edu","tech"],url:"https://www.linkedin.com/pulse/why-i-built-custom-logic-gates-trainer-javier-piay-bxbme"},
+  {title:"Queridos Sabios Magos",tags:["es"],url:"https://www.linkedin.com/pulse/queridos-sabios-magos-javier-piay-fa4xf"},
+  {title:"AI-Enabled Evolution in Teaching & Learning Practice",tags:["ai","edu"],url:"https://www.linkedin.com/pulse/ai-enabled-evolution-teaching-learning-practice-javier-piay-9jbvf"},
+  {title:"A Human Compass to Go Beyond Imagination",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/human-compass-go-beyond-imagination-javier-piay-5czie"},
+  {title:"Una brújula humana para ir más allá de la imaginación",tags:["ai","phil","es"],url:"https://www.linkedin.com/pulse/una-br%C3%BAjula-humana-para-ir-m%C3%A1s-all%C3%A1-de-la-imaginaci%C3%B3n-javier-piay-wuqse"},
+  {title:"Boost Your Productivity Using AI + WSL on Windows (Part II)",tags:["ai","tech"],url:"https://www.linkedin.com/pulse/boost-your-productivity-part-ii-using-ai-wsl-windows-javier-piay-ojenf"},
+  {title:"Boost Your Productivity Using AI + WSL on Windows (Part I)",tags:["ai","tech"],url:"https://www.linkedin.com/pulse/boost-your-productivity-using-ai-wsl-windows-practical-javier-piay-4blmf"},
+  {title:"AI in Education: Beyond Time-Saving",tags:["ai","edu"],url:"https://www.linkedin.com/pulse/ai-education-beyond-time-saving-javier-piay-mwjaf"},
+  {title:"The 10 Principles for Sustainable Teaching",tags:["edu"],url:"https://www.linkedin.com/pulse/10-principles-sustainable-teaching-javier-piay-gvqwf"},
+  {title:"The 'Overqualified' Myth",tags:["career"],url:"https://www.linkedin.com/pulse/overqualified-employees-under-prepared-organizations-javier-piay-akzxf"},
+  {title:"Article #34: a meta-reflection",tags:["phil"],url:"https://www.linkedin.com/pulse/article-34-meta-reflection-javier-piay-gbxof"},
+  {title:"Empowering Educators with Conversational AI",tags:["ai","edu"],url:"https://www.linkedin.com/pulse/empowering-educators-conversational-ai-javier-piay-quoif"},
+  {title:"AI is the Engine, Data is the Fuel, and Gravity isn't a Strategy",tags:["ai"],url:"https://www.linkedin.com/pulse/ai-engine-data-fuel-gravity-isnt-strategy-javier-piay-15uhf"},
+  {title:"Pantallas en las aulas: ¿un daño irreparable?",tags:["edu","es"],url:"https://www.linkedin.com/pulse/pantallas-en-las-aulas-un-da%C3%B1o-irreparable-javier-piay-esuwf"},
+  {title:"Visibility vs Influence",tags:["career"],url:"https://www.linkedin.com/pulse/visibility-vs-influence-javier-piay-5bagf"},
+  {title:"The Computing Elevator: 'Floor-Level Programming'",tags:["tech","edu"],url:"https://www.linkedin.com/pulse/computing-elevator-floor-level-programming-javier-piay-m4tnf"},
+  {title:"More Than Just an LLM: How Advanced Systems Enable Intelligent Interactions",tags:["ai","tech"],url:"https://www.linkedin.com/pulse/more-than-just-llm-how-advanced-systems-enable-intelligent-piay-qkcuf"},
+  {title:"Don't Ask What AI Can Do for You, Ask What You Can Do for AI",tags:["ai"],url:"https://www.linkedin.com/pulse/dont-ask-what-ai-can-do-you-javier-piay-wcmtf"},
+  {title:"No te preguntes qué puede hacer la IA por ti...",tags:["ai","es"],url:"https://www.linkedin.com/pulse/te-preguntes-qu%C3%A9-puede-hacer-la-ia-por-ti-preg%C3%BAntate-puedes-piay-wx3jf"},
+  {title:"¿Entonces... es culpa de la IA o no?",tags:["ai","es"],url:"https://www.linkedin.com/pulse/entonces-es-culpa-de-la-ia-o-javier-piay-hldmf"},
+  {title:"Driving: a highly cognitive effort",tags:["phil"],url:"https://www.linkedin.com/pulse/driving-highly-cognitive-effort-javier-piay-juxsf"},
+  {title:"Artificial Consciousness: The Sound of the Code",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/artificial-consciousness-sound-code-javier-piay-hkswf"},
+  {title:"Reflejos de Realidad",tags:["phil","es"],url:"https://www.linkedin.com/pulse/reflejos-de-realidad-javier-piay-aazlf"},
+  {title:"Yes, AI-Generated, but does it really matter?",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/yes-ai-generated-does-really-matter-javier-piay-x0pqf"},
+  {title:"Reimagining Computer Science Education",tags:["edu","tech"],url:"https://www.linkedin.com/pulse/reimagining-computer-science-education-javier-piay-1cgtf"},
+  {title:"El uso de GPTs en educación: de oráculo infalible a facilitador de aprendizaje",tags:["ai","edu","es"],url:"https://www.linkedin.com/pulse/el-uso-de-gpts-en-educaci%C3%B3n-or%C3%A1culo-infalible-facilitador-javier-piay-fq0cf"},
+  {title:"Is AI Truly Unique? Debating the Need for Urgent Ethics and Governance...",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/ai-truly-unique-debating-need-urgent-ethics-governance-javier-piay-unjwf"},
+  {title:"Accelerated Intelligence: debunking the myths around AI and human thinking",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/accelerated-intelligence-debunking-myths-around-ai-human-javier-piay-mf3wf"},
+  {title:"Internet as the Infrastructure of Life",tags:["tech","phil"],url:"https://www.linkedin.com/pulse/internet-infrastructure-life-javier-piay-xclaf"},
+  {title:"STEM: a new label for old practices or a revolutionary approach?",tags:["edu"],url:"https://www.linkedin.com/pulse/stem-new-label-old-practices-revolutionary-approach-javier-piay-twgxf"},
+  {title:"On the Questionable Limitations of AI",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/questionable-limitations-ai-javier-piay-r6ptf"},
+  {title:"A conversation on The Nature of Dimensions",tags:["tech","phil"],url:"https://www.linkedin.com/pulse/conversation-nature-dimensions-javier-piay-lomfe"},
+  {title:"Teachers: How to Assess the Effectiveness of Your Teaching Practice",tags:["edu"],url:"https://www.linkedin.com/pulse/teachers-how-assess-effectiveness-your-teaching-practice-javier-piay-cnitf"},
+  {title:"AI in Education: beyond ChatGPT",tags:["ai","edu"],url:"https://www.linkedin.com/pulse/ai-education-beyond-chatgpt-javier-piay-sq39f"},
+  {title:"Authenticity in the age of AI",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/authenticity-age-ai-javier-piay-kmgjf"},
+  {title:"Generative AI: unveiling the effort behind the magic",tags:["ai"],url:"https://www.linkedin.com/pulse/generative-ai-unveiling-effort-behind-magic-javier-piay-qzd2f"},
+  {title:"Mathematics: Invention or Discovery?",tags:["phil"],url:"https://www.linkedin.com/pulse/mathematics-invention-discovery-javier-piay-5ijhf"},
+  {title:"Professional Age: the new paradigm of career growth",tags:["career"],url:"https://www.linkedin.com/pulse/professional-age-new-paradigm-career-growth-javier-piay-z8bue"},
+  {title:"FAICs: identifying non-genuine AI solutions",tags:["ai"],url:"https://www.linkedin.com/pulse/faics-identifying-non-genuine-ai-solutions-javier-piay-bfhqf"},
+  {title:"Is Using ChatGPT Cheating?",tags:["ai","edu"],url:"https://www.linkedin.com/pulse/using-chatgpt-cheating-javier-piay-ktv7f"},
+  {title:"My response to Clara Lin Hawking's article on Teacher Hiring",tags:["edu"],url:"https://www.linkedin.com/pulse/my-response-clara-lin-hawkings-article-must-ask-question-javier-piay-500of"},
+  {title:"Mastering Human-AI Communication: dos and don'ts of effective prompting",tags:["ai"],url:"https://www.linkedin.com/pulse/mastering-human-ai-communication-dos-donts-effective-mr-piay-kuwzf"},
+  {title:"Interplay between Human Intelligence and AGI in Shaping Human Evolution",tags:["ai","phil"],url:"https://www.linkedin.com/pulse/interplay-between-human-intelligence-artificial-agi-javier-mr-piay--sk5pf"},
+  {title:"Risks and challenges of a work-free society",tags:["ai","career","phil"],url:"https://www.linkedin.com/pulse/risks-challenges-work-free-society-chatgpt-javier-piay-ipkrf"},
+];
+
+const posts = [
+  {title:"Open Source in the Age of AI",url:"https://www.linkedin.com/feed/update/urn:li:activity:7449407138889654272/"},
+  {title:"Content is everywhere, but thinking needs a place.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7442672549018140672/"},
+  {title:"Espectro de delegación cognitiva en nuestra interacción con la IA",url:"https://www.linkedin.com/feed/update/urn:li:activity:7442651280667357184/"},
+  {title:"Happy π Day (March 14)!",url:"https://www.linkedin.com/feed/update/urn:li:activity:7437996085614333953/"},
+  {title:"Local AI Stack",url:"https://www.linkedin.com/feed/update/urn:li:activity:7437975282357202944/"},
+  {title:"Local AI Setup",url:"https://www.linkedin.com/feed/update/urn:li:activity:7437954634494939137/"},
+  {title:"Hablamos de la IA como si fuese un sujeto: la IA hace esto, la IA decide aquello…",url:"https://www.linkedin.com/feed/update/urn:li:activity:7432157629038096384/"},
+  {title:"Learning shapes both life and algorithms, yet purpose is what separates us from code.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7431782278076313600/"},
+  {title:"Ten principles for a conscious integration of AI in education.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7430194800273920000/"},
+  {title:"Decálogo para una integración consciente de la IA en educación.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7430193537897451520/"},
+  {title:"Me preocupa especialmente el uso adecuado de la IA en cada etapa educativa",url:"https://www.linkedin.com/feed/update/urn:li:activity:7430182627653087232/"},
+  {title:"In the age of AI, the value of an educational institution is no longer content delivery.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7429868178673074178/"},
+  {title:'"Education is the most human thing we do, and what truly sets humans apart."',url:"https://www.linkedin.com/feed/update/urn:li:activity:7429529690647781376/"},
+  {title:"I finally built something I've dreamt about for years: a network simulator.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7424767860532584448/"},
+  {title:"🚀 Cosmic Odometer",url:"https://www.linkedin.com/feed/update/urn:li:activity:7421205745079209984/"},
+  {title:"Tech Gratitude 2025 🙏",url:"https://www.linkedin.com/feed/update/urn:li:activity:7411501687061827584/"},
+  {title:"TerMinAll - Command-Line Text Processing Tutorial",url:"https://www.linkedin.com/feed/update/urn:li:activity:7411479758632296448/"},
+  {title:'Ending 2025 in "terminal mode" ;)',url:"https://www.linkedin.com/feed/update/urn:li:activity:7411476545174847488/"},
+  {title:"Claude Code",url:"https://www.linkedin.com/feed/update/urn:li:activity:7411416599192104960/"},
+  {title:"The password paradox: when control becomes a cost",url:"https://www.linkedin.com/feed/update/urn:li:activity:7409349825554595841/"},
+  {title:"Vibe coding: when is it fine and when is it not?",url:"https://www.linkedin.com/feed/update/urn:li:activity:7405709833858985987/"},
+  {title:"Es una suerte poder trabajar haciendo NADA (Nuevo Área de Disrupción y Avance)",url:"https://www.linkedin.com/feed/update/urn:li:activity:7403030201271537664/"},
+  {title:"Imposible no reírse ;)",url:"https://www.linkedin.com/feed/update/urn:li:activity:7400472778598129665/"},
+  {title:"AI isn't optional, it's essential.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7400183538349686784/"},
+  {title:"Que levante la mano quien nunca le haya pedido a la IA que genere un prompt",url:"https://www.linkedin.com/feed/update/urn:li:activity:7397657500101296128/"},
+  {title:"Our ability to define intentions, exercise judgment and maintain purpose allows us not just to use AI but to guide it.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7396936620916224000/"},
+  {title:"Nuestra capacidad de definir intenciones, ejercer juicio y mantener propósito nos permite guiar a la IA.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7396934176697954304/"},
+  {title:"Top 10 Essential AI Roles for Schools ;)",url:"https://www.linkedin.com/feed/update/urn:li:activity:7396289310561554433/"},
+  {title:"Pilot before scaling — AI in schools checklist",url:"https://www.linkedin.com/feed/update/urn:li:activity:7396250967903604736/"},
+  {title:"Does your school have an AI governance and usage policy?",url:"https://www.linkedin.com/feed/update/urn:li:activity:7396240659227160577/"},
+  {title:"Hourly rates for remote freelance teachers — a reality check",url:"https://www.linkedin.com/feed/update/urn:li:activity:7395801683018006528/"},
+  {title:"EdTech Lead: at the heart of schools' digital transformation",url:"https://www.linkedin.com/feed/update/urn:li:activity:7395431420330049536/"},
+  {title:"Computer Networking Learning Lab",url:"https://www.linkedin.com/feed/update/urn:li:activity:7395409399663652864/"},
+  {title:"I love that 'aha' moment when a student suddenly gets it",url:"https://www.linkedin.com/feed/update/urn:li:activity:7395064342565691392/"},
+  {title:"Another 3 hours of AI coding that were worth investing!",url:"https://www.linkedin.com/feed/update/urn:li:activity:7394870478034685952/"},
+  {title:"Colapso educativo: un profesor cuenta lo que está pasando en las aulas…",url:"https://www.linkedin.com/feed/update/urn:li:activity:7393399897044959233/"},
+  {title:"Great opportunity: Computer Science Teacher at O Castro British International School",url:"https://www.linkedin.com/feed/update/urn:li:activity:7393386257344614400/"},
+
+  {title:"AI is transforming the way we think and act.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7390770683586428928/"},
+  {title:"I'm pleased to be a small part of Al's Edu recommends for Nov 2025 😊",url:"https://www.linkedin.com/feed/update/urn:li:activity:7390353409561948161/"},
+  {title:"🎓 You're going to like this one!",url:"https://www.linkedin.com/feed/update/urn:li:activity:7390147815261351936/"},
+  {title:"Using AI in education settings: support materials",url:"https://www.linkedin.com/feed/update/urn:li:activity:7390033094000422912/"},
+  {title:"EduCreation: making learning exciting",url:"https://www.linkedin.com/feed/update/urn:li:activity:7389601833717149696/"},
+  {title:"The Unknown Appears Mysterious",url:"https://www.linkedin.com/feed/update/urn:li:activity:7389418975140491265/"},
+  {title:"AI + WSL productivity demo — the final result",url:"https://www.linkedin.com/feed/update/urn:li:activity:7389355904720154624/"},
+  {title:"Small demo: AI and WSL working together for teachers",url:"https://www.linkedin.com/feed/update/urn:li:activity:7388952124132409344/"},
+  {title:'You need to be "bored". Here\'s why.',url:"https://www.linkedin.com/feed/update/urn:li:activity:7388682423112204289/"},
+  {title:'Have you heard about or tried "Teach" in Microsoft 365?',url:"https://www.linkedin.com/feed/update/urn:li:activity:7388551550421417984/"},
+  {title:"AI transformers explained visually (next word predictor)",url:"https://www.linkedin.com/feed/update/urn:li:activity:7388526162714591232/"},
+  {title:"Creativity = Knowledge ⊗ Imagination",url:"https://www.linkedin.com/feed/update/urn:li:activity:7379211356996136960/"},
+  {title:"Where Does All That Energy Come From? A Teacher's Perspective",url:"https://www.linkedin.com/feed/update/urn:li:activity:7377637963012333569/"},
+  {title:"The GenAI Divide.",url:"https://www.linkedin.com/feed/update/urn:li:activity:7367531547626733568/"},
+];
+
+const tl={ai:"AI",edu:"Education",tech:"Tech",career:"Career",phil:"Philosophy",es:"Español"};
+const tc={ai:"tag-ai",edu:"tag-edu",tech:"tag-tech",career:"tag-career",phil:"tag-phil",es:"tag-es"};
+
+function switchTab(btn,id){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+
+let artCur='all';
+function filterArt(btn,cat){
+  artCur=cat;
+  document.querySelectorAll('#art-filters .fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderArticles();
+}
+function renderArticles(){
+  const f=artCur==='all'?articles:articles.filter(a=>a.tags.includes(artCur));
+  document.getElementById('art-count').textContent=f.length+' article'+(f.length!==1?'s':'');
+  document.getElementById('art-list').innerHTML=f.map((a,i)=>
+    `<div class="row"><span class="num">${articles.indexOf(a)+1}</span><a class="title-link" href="${a.url}" target="_blank">${a.title}</a>${a.tags.map(t=>`<span class="tag ${tc[t]}">${tl[t]}</span>`).join('')}</div>`
+  ).join('');
+}
+function renderPosts(){
+  document.getElementById('post-count').textContent=posts.length+' posts';
+  document.getElementById('post-list').innerHTML=posts.map((p,i)=>
+    `<div class="row"><span class="num">${i+1}</span><a class="title-link" href="${p.url}" target="_blank">${p.title}</a></div>`
+  ).join('');
+}
+renderArticles();
+renderPosts();
+</script>
+</body>
+</html>
