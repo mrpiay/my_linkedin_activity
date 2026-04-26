@@ -3,6 +3,7 @@
 
 const articles = [
   // {title:"",tags:[""],url:""},
+  {title:"¿Entender la realidad o navegar sus resultados?",tags:["ai","phil","es"],url:"https://www.linkedin.com/pulse/entender-la-realidad-o-navegar-sus-resultados-javier-piay-2bxle/"},
   {title:"La computación cuántica y el mito del paralelismo",tags:["tech","edu","es"],url:"https://www.linkedin.com/pulse/la-computaci%C3%B3n-cu%C3%A1ntica-y-el-mito-del-paralelismo-javier-piay-i5dae"},
   {title:"La Chispa Humana / The Human Spark",tags:["ai","career"],url:"https://www.linkedin.com/pulse/la-chispa-humana-human-spark-javier-piay-wdvde"},
   {title:"Git The Flag: master git or die trying",tags:["tech"],url:"https://www.linkedin.com/pulse/git-flag-master-die-trying-javier-piay-flr4e"},
