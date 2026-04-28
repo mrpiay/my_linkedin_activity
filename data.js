@@ -60,7 +60,7 @@ const articles = [
 
 const posts = [
   // {title:"",url:"https://www.linkedin.com/feed/update/urn:li:activity:/"},
-  {title:"I know how challenging teaching and understanding Bitcoin/blockchain can be",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453917798986059776/"},
+  {title:"I know how challenging teaching and understanding Bitcoin can be",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453917798986059776/"},
   {title:"Acción comercial y desarrollo de negocio en tiempos de la IA",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453801253966458881/"},
   {title:"ghpool is a real-time feed of GitHub's global activity",url:"https://www.linkedin.com/feed/update/urn:li:activity:7452473379284127745/"},
   {title:"Open Source in the Age of AI",url:"https://www.linkedin.com/feed/update/urn:li:activity:7449407138889654272/"},
