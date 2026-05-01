@@ -3,6 +3,7 @@
 
 const articles = [
   // {title:"",tags:[""],url:""},
+  {title:"55-55-55: my decalogue of thinking",tags:["phil"],url:"https://www.linkedin.com/pulse/55-55-55-my-decalogue-thinking-javier-piay-tszye/"},
   {title:"Las Sombras del Infinito: reflexiones sobre el experimento de los tres polarizadores",tags:["phil","es"],url:"https://www.linkedin.com/pulse/las-sombras-del-infinito-javier-piay-lgtxe/"},
   {title:"¿Entender la realidad o navegar sus resultados?",tags:["ai","phil","es"],url:"https://www.linkedin.com/pulse/entender-la-realidad-o-navegar-sus-resultados-javier-piay-2bxle/"},
   {title:"La computación cuántica y el mito del paralelismo",tags:["tech","edu","es"],url:"https://www.linkedin.com/pulse/la-computaci%C3%B3n-cu%C3%A1ntica-y-el-mito-del-paralelismo-javier-piay-i5dae"},
