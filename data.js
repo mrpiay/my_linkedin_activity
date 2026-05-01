@@ -3,6 +3,7 @@
 
 const articles = [
   // {title:"",tags:[""],url:""},
+  {title:"Las Sombras del Infinito: reflexiones sobre el experimento de los tres polarizadores",tags:["phil","es"],url:"https://www.linkedin.com/pulse/las-sombras-del-infinito-javier-piay-lgtxe/"},
   {title:"¿Entender la realidad o navegar sus resultados?",tags:["ai","phil","es"],url:"https://www.linkedin.com/pulse/entender-la-realidad-o-navegar-sus-resultados-javier-piay-2bxle/"},
   {title:"La computación cuántica y el mito del paralelismo",tags:["tech","edu","es"],url:"https://www.linkedin.com/pulse/la-computaci%C3%B3n-cu%C3%A1ntica-y-el-mito-del-paralelismo-javier-piay-i5dae"},
   {title:"La Chispa Humana / The Human Spark",tags:["ai","career"],url:"https://www.linkedin.com/pulse/la-chispa-humana-human-spark-javier-piay-wdvde"},
@@ -60,6 +61,7 @@ const articles = [
 
 const posts = [
   // {title:"",url:"https://www.linkedin.com/feed/update/urn:li:activity:/"},
+  {title:"Día Internacional de la Máquina Trabajadora / International Working Machine Day",url:"https://www.linkedin.com/feed/update/urn:li:activity:7455919245353181184/"},
   {title:"I know how challenging teaching and understanding Bitcoin can be",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453917798986059776/"},
   {title:"Acción comercial y desarrollo de negocio en tiempos de la IA",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453801253966458881/"},
   {title:"ghpool is a real-time feed of GitHub's global activity",url:"https://www.linkedin.com/feed/update/urn:li:activity:7452473379284127745/"},
