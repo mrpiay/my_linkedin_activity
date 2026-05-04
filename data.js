@@ -3,6 +3,7 @@
 
 const articles = [
   // {title:"",tags:[""],url:""},
+  {title:"The (Missing) Corporate Learning Architect",tags:[],url:"https://www.linkedin.com/pulse/missing-corporate-learning-architect-javier-piay-7jeje"},  
   {title:"55-55-55: my decalogue of thinking",tags:["phil"],url:"https://www.linkedin.com/pulse/55-55-55-my-decalogue-thinking-javier-piay-tszye/"},
   {title:"Las Sombras del Infinito: reflexiones sobre el experimento de los tres polarizadores",tags:["phil","es"],url:"https://www.linkedin.com/pulse/las-sombras-del-infinito-javier-piay-lgtxe/"},
   {title:"¿Entender la realidad o navegar sus resultados?",tags:["ai","phil","es"],url:"https://www.linkedin.com/pulse/entender-la-realidad-o-navegar-sus-resultados-javier-piay-2bxle/"},
