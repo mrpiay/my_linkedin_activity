@@ -3,6 +3,7 @@
 
 const articles = [
   // {title:"",tags:[""],url:""},
+  {title:"The Mentalist - a binary divination",tags:[],url:"https://www.linkedin.com/pulse/mentalist-binary-divination-javier-piay-pombo-nhcae/"},  
   {title:"The (Missing) Corporate Learning Architect",tags:[],url:"https://www.linkedin.com/pulse/missing-corporate-learning-architect-javier-piay-7jeje"},  
   {title:"55-55-55: my decalogue of thinking",tags:["phil"],url:"https://www.linkedin.com/pulse/55-55-55-my-decalogue-thinking-javier-piay-tszye/"},
   {title:"Las Sombras del Infinito: reflexiones sobre el experimento de los tres polarizadores",tags:["phil","es"],url:"https://www.linkedin.com/pulse/las-sombras-del-infinito-javier-piay-lgtxe/"},
@@ -63,6 +64,9 @@ const articles = [
 
 const posts = [
   // {title:"",url:"https://www.linkedin.com/feed/update/urn:li:activity:/"},
+  {title:"I accidentally learned how LinkedIn visibility actually "works",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7459207070718951424/"},  
+  {title:"Who's viewed your profile",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7458830108410355712/"},  
+  {title:"Advanced AI doesn't reconstruct intent perfectly",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7457872205763342336/"},  
   {title:"Día Internacional de la Máquina Trabajadora / International Working Machine Day",url:"https://www.linkedin.com/feed/update/urn:li:activity:7455919245353181184/"},
   {title:"I know how challenging teaching and understanding Bitcoin can be",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453917798986059776/"},
   {title:"Acción comercial y desarrollo de negocio en tiempos de la IA",url:"https://www.linkedin.com/feed/update/urn:li:activity:7453801253966458881/"},
