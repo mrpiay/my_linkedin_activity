@@ -64,7 +64,7 @@ const articles = [
 
 const posts = [
   // {title:"",url:"https://www.linkedin.com/feed/update/urn:li:activity:/"},
-  {title:"I accidentally learned how LinkedIn visibility actually "works",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7459207070718951424/"},  
+  {title:"I accidentally learned how LinkedIn visibility actually works",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7459207070718951424/"},  
   {title:"Who's viewed your profile",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7458830108410355712/"},  
   {title:"Advanced AI doesn't reconstruct intent perfectly",tags:[],url:"https://www.linkedin.com/feed/update/urn:li:activity:7457872205763342336/"},  
   {title:"Día Internacional de la Máquina Trabajadora / International Working Machine Day",url:"https://www.linkedin.com/feed/update/urn:li:activity:7455919245353181184/"},
